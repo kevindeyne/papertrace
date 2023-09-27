@@ -5,7 +5,7 @@ const canvasCtx = canvas.getContext("2d");
 navigator.mediaDevices.getUserMedia({
   audio: false,
   video: {
-    facingMode: 'environment'
+    facingMode: { exact: "environment" } //possibly switch between camera modes
   }
 }).then((stream) => {
 
