@@ -7,12 +7,16 @@
 
     <link rel="stylesheet" href="camera.css" />
 
+    <script src="opencv_4_8_0.min.js" defer></script>
+    <script src="jscanify.min.js" defer></script>
     <script src="camera.js" defer></script>
   </head>
   <body>
     <h1>Papertrace</h1>
 
-    <section id="new-image">
+    <canvas id="canvas"></canvas>
+
+    <section id="new-image-fallback" style="display: none;">
 
       <label for="cameraFileInput">
         <span class="btn">Open camera</span>
