@@ -10,21 +10,32 @@
     <script src="opencv_4_8_0.min.js" defer></script>
     <script src="jscanify.min.js" defer></script>
     <script src="camera.js" defer></script>
-    <script src="scan.js" defer></script>
+    <!--script src="scan.js" defer></script-->
   </head>
   <body>
     <h1>Papertrace</h1>
 
-    <canvas muted autoplay id="canvas"></canvas>
+    <!--canvas muted autoplay id="canvas"></canvas-->
 
-    <section id="new-image-fallback" style="display: none;">
+    <section id="new-image-fallback">
 
       <label for="cameraFileInput">
         <span class="btn">Open camera</span>
         <input id="cameraFileInput" type="file" accept="image/*" capture="environment" />
       </label>
 
+      <p>Raw image:</p>
       <img id="pictureFromCamera" />
+
+      <br>
+      <p>Scanned image (extract):</p>
+      <img id="scannedPictureExtract" />
+
+      <br>
+      <p>Extracted OCR:</p>
+      <p id="ocr">
+
+      </p>
 
     </section>
   </body>
