@@ -2,7 +2,12 @@ const scanner = new jscanify();
 const canvas = document.getElementById("canvas");
 const canvasCtx = canvas.getContext("2d");
 
-navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+navigator.mediaDevices.getUserMedia({
+  audio: false,
+  video: {
+    facingMode: 'environment'
+  }
+}).then((stream) => {
 
     const video = document.createElement('video');
     video.srcObject = stream;
