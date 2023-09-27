@@ -16,8 +16,18 @@ document
           const paperHeight = newImg.naturalHeight;
 
           const resultCanvas = scanner.extractPaper(newImg, paperWidth, paperHeight);
-          document.getElementById("scannedPictureExtract").setAttribute("src", resultCanvas.toDataURL("image/jpeg", 1.0));
+          const resultUrl = resultCanvas.toDataURL("image/jpeg", 1.0);
+          document.getElementById("scannedPictureExtract").setAttribute("src", resultUrl);
 
+          document.getElementById("ocr").innerText = "Processing";
+
+          Tesseract.recognize(
+            resultUrl,
+            'eng'
+          ).then(({ data: { text } }) => {
+            console.log(text);
+            document.getElementById("ocr").innerText = text;
+          })
       }
 
   });

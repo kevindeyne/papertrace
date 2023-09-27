@@ -2,7 +2,7 @@
   display: none;
 }
 
-#pictureFromCamera {
+#pictureFromCamera, #scannedPictureExtract {
   max-width: 500px;
   max-height: 200px;
   height: auto;
