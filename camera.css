@@ -3,7 +3,8 @@
 }
 
 #pictureFromCamera {
-  width: 100%;
+  max-width: 500px;
+  max-height: 200px;
   height: auto;
   margin-top: 16px;
 }
