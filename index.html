@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8" />
+
     <title>Papertrace</title>
-</head>
-<body>
-    <h1>Hello, World!</h1>
-</body>
+
+    <link rel="stylesheet" href="camera.css" />
+
+    <script src="camera.js" defer></script>
+  </head>
+  <body>
+    <h1>Papertrace</h1>
+
+    <section id="new-image">
+
+      <label for="cameraFileInput">
+        <span class="btn">Open camera</span>
+        <input id="cameraFileInput" type="file" accept="image/*" capture="environment" />
+      </label>
+
+      <img id="pictureFromCamera" />
+
+    </section>
+  </body>
 </html>
