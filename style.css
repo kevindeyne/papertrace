@@ -1,3 +1,55 @@
+/* reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* end reset */
+
+#cameraFileInput {
+  display: none;
+}
+
 @font-face {
   font-family: 'Source Sans 3';
   font-style: normal;
@@ -18,6 +70,7 @@ body {
 h1 {
   font-weight: 600;
   font-size: 3rem;
+  margin-bottom: 0.5em;
 }
 
 p {
@@ -27,15 +80,24 @@ p {
 
 input {
   font-size: 1.25rem;
-  width: 90%;
   background: transparent;
   border: 0;
   outline: none;
   border-bottom: 1px dashed #c6c6c6;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.25em;
 }
 
-button {
+#search-section, #button-section {
+  display: block;
+  margin-top:1em;
+  margin-bottom:2em;
+}
+
+#search-section {
+  display: flex;
+}
+
+.button {
   background: black;
   padding: 1rem 2rem;
   font-size: 1.25rem;
@@ -43,9 +105,13 @@ button {
   color: white;
   border-radius: 1em;
   cursor: pointer;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  min-width: 100px;
+  text-align: center;
 }
 
-button:hover {
+.button:hover {
   background: #444444;
 }
 
@@ -69,11 +135,11 @@ button i {
 }
 
 /***/
-#document-listing {
+#document-list {
     margin-top: 1em;
 }
 
-#document-listing .document {
+#document-list .document {
     display: inline-flex;
     padding: 0.5em;
     padding-left: 2em;
@@ -82,17 +148,17 @@ button i {
     border-radius: 1em;
 }
 
-#document-listing .description p {
+#document-list .description p {
     font-size: 1rem;
 }
 
-#document-listing img {
+#document-list img {
     height: 200px;
     display: inline-block;
     margin: 0;
 }
 
-#document-listing .description {
+#document-list .description {
     display: inline-block;
     height: 200px;
     margin: 0;
@@ -100,7 +166,21 @@ button i {
 }
 
 @media (max-width: 800px) {
-  #document-listing .document {
+  #document-list .document {
       display: flex;
   }
+}
+
+#loader {
+  background: #2a2a2a;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 15%;
+
+  color: white;
+  font-size: xx-large;
 }

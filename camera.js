@@ -1,33 +1,37 @@
 const scanner = new jscanify();
 
+const loader = document.getElementById("loader");
+
 document
   .getElementById("cameraFileInput")
   .addEventListener("change", function () {
+    loader.style = "display: block;";
     let imageSrc = window.URL.createObjectURL(this.files[0]);
-    document
-      .getElementById("pictureFromCamera")
-      .setAttribute("src", imageSrc);
+    const fileName = this.files[0].name;
 
-      const newImg = document.createElement("img")
-      newImg.src = imageSrc
+    const newImg = document.createElement("img")
+    newImg.src = imageSrc
 
-      newImg.onload = function(){
-          const paperWidth = newImg.naturalWidth;
-          const paperHeight = newImg.naturalHeight;
+    newImg.onload = function(){
+      const resultCanvas = scanner.extractPaper(newImg, newImg.naturalWidth, newImg.naturalHeight);
+      const resultUrl = resultCanvas.toDataURL("image/png", 1.0);
+      Tesseract.recognize(
+        resultUrl,
+        'eng'
+      ).then(({ data: { text } }) => {
+        addDocumentToDB(fileName, resultUrl, text);
+        loader.style = "display: none;"; //TODO probably forward to image details
+      });
+    }
+    });
 
-          const resultCanvas = scanner.extractPaper(newImg, paperWidth, paperHeight);
-          const resultUrl = resultCanvas.toDataURL("image/jpeg", 1.0);
-          document.getElementById("scannedPictureExtract").setAttribute("src", resultUrl);
-
-          document.getElementById("ocr").innerText = "Processing";
-
-          Tesseract.recognize(
-            resultUrl,
-            'eng'
-          ).then(({ data: { text } }) => {
-            console.log(text);
-            document.getElementById("ocr").innerText = text;
-          })
-      }
-
-  });
+  function addDocumentToDB(fileName, imgUrl, text) {
+      const added = db.add(docs_table_name, {
+        "name": fileName,
+        "img": imgUrl,
+        "ocr": text,
+        "added": new Date()
+      });
+      console.log(added);
+      load_all();
+  }

@@ -5,7 +5,8 @@
 
     <title>Papertrace</title>
 
-    <link rel="stylesheet" href="camera.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://css.gg/css?=|export|file-document|photoscan|search" rel="stylesheet">
 
     <!-- used for document deskew -->
     <script src="opencv_4_8_0.min.js" defer></script>
@@ -13,33 +14,40 @@
 
     <!-- used for OCR -->
     <script src="tesseract.min.js" defer></script>
-    
+
+    <!-- used for easier indexedDB interaction -->
+    <script src="idb7.js" defer></script>
+
+    <!-- custom scripts -->
+    <script src="database.js" defer></script>
     <script src="camera.js" defer></script>
-    <!--not used :: script src="scan.js" defer></script-->
   </head>
   <body>
-    <h1>Papertrace</h1>
+    <h1><i class="icon gg-file-document"></i> Papertrace</h1>
 
-    <!--canvas muted autoplay id="canvas"></canvas-->
+    <section id="search-section">
+      <input id="search-value" type="text" placeholder="Search document contents" autocomplete="off" style="flex: 2 1em; order:1;"></input>
+      <span id="search-button" class="button" style="order:2;"><i class="icon gg-search"></i> Search</span>
+    </section>
 
-    <section id="new-image-fallback">
-
+    <section id="button-section">
       <label for="cameraFileInput">
-        <span class="btn">Open camera</span>
+        <span class="button"><i class="icon gg-photoscan"></i> Add new document</span>
         <input id="cameraFileInput" type="file" accept="image/*" capture="environment" />
       </label>
 
-      <p>Raw image:</p>
-      <img id="pictureFromCamera" />
-
-      <br>
-      <p>Scanned image (extract):</p>
-      <img id="scannedPictureExtract" />
-
-      <br>
-      <p>Extracted OCR:</p>
-      <p id="ocr"></p>
-
+      <span id="export-import" class="button"><i class="icon gg-export"></i> Export / import</button>
     </section>
+
+    <section id="document-list">
+    </section>
+
+    <!-- used for processing -->
+    <section style="display: none;">
+      <img id="pictureFromCamera" />
+      <img id="scannedPictureExtract" />
+    </section>
+
+    <div id="loader" style="display: none;">Processing image ...</div>
   </body>
 </html>
