@@ -184,3 +184,22 @@ button i {
   color: white;
   font-size: xx-large;
 }
+
+#loader-wrapper {
+	width: 10em;
+	display: block;
+	height: 1em;
+	border: 1px solid white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+	box-sizing: border-box;
+}
+
+#loader-progress {
+	display: block;
+	height: 100%;
+	background: white;
+	box-sizing: border-box;
+	border: 3px #2a2a2a solid;
+}

@@ -42,12 +42,17 @@
     <section id="document-list">
     </section>
 
-    <!-- used for processing -->
-    <section style="display: none;">
-      <img id="pictureFromCamera" />
-      <img id="scannedPictureExtract" />
-    </section>
+    <section id="document-detail" style="display:none;">
+        <span class="button"><i class="icon gg-search"></i> Back to list</span>
 
-    <div id="loader" style="display: none;">Processing image ...</div>
+        <section id="document-detail-data">
+          <img />
+          <div id="ocr-details" />
+        </section>
+    </section>
+	
+    <div id="loader">
+		<div>Initializing ...</div><div id="loader-wrapper"><div id="loader-progress" style="width:0%"></div></div>
+	</div>
   </body>
 </html>
