@@ -1,4 +1,6 @@
 const docList = document.getElementById("document-list");
+const docDetail = document.getElementById("document-detail");
+
 let db;
 let initProgress = 1;
 const maxProgress = 5;
@@ -110,8 +112,16 @@ async function load_all() {
 	hideLoader();
 }
 
-function clickOnDocumentListing(key) {
+async function clickOnDocumentListing(key) {
   console.log(key);
+  const item = await db.get(docs_table_name, key);
+  hide(docList);
+  show(docDetail);
+}
+
+function backToListing() {
+  show(docList);
+  hide(docDetail);
 }
 
 function updateProgressBar(msg) {
@@ -121,9 +131,17 @@ function updateProgressBar(msg) {
 
 function showLoader(msg) {
 	loader.innerHTML = msg;
-	loader.style = "display: block;";
+	show(loader);
 }
 
 function hideLoader() {
-	loader.style = "display: none;";
+	hide(loader);
+}
+
+function show(elem) {
+	elem.style = "display: block;";
+}
+
+function hide(elem) {
+	elem.style = "display: none;";
 }
