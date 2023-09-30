@@ -1,5 +1,7 @@
 const docList = document.getElementById("document-list");
 const docDetail = document.getElementById("document-detail");
+const ocrDetails = document.getElementById("ocr-details");
+const imgDetails = document.getElementById("img-details");
 
 let db;
 let initProgress = 1;
@@ -112,11 +114,23 @@ async function load_all() {
 	hideLoader();
 }
 
+let activeDocumentId = null;
+
 async function clickOnDocumentListing(key) {
-  console.log(key);
-  const item = await db.get(docs_table_name, key);
-  hide(docList);
-  show(docDetail);
+	activeDocumentId = key;
+	hide(docList);
+
+	const item = await db.get(docs_table_name, key);
+	imgDetails.src = item.img;
+	ocrDetails.textContent = item.ocr;
+	show(docDetail);
+}
+
+async function deleteDocument() {
+    await db.delete(docs_table_name, activeDocumentId);
+	document.querySelector("#document-list [docid='"+activeDocumentId+"']").remove();
+	activeDocumentId = null;
+	backToListing();
 }
 
 function backToListing() {

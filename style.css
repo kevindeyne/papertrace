@@ -203,3 +203,17 @@ button i {
 	box-sizing: border-box;
 	border: 3px #2a2a2a solid;
 }
+
+#document-detail {
+	padding-top:1em;
+}
+
+#img-details {
+    max-width: 400px;
+    margin-top: 2em;
+}
+
+#ocr-details {
+	margin-top: 1em;
+	font-family: monospace;
+}
